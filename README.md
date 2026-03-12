@@ -2,6 +2,20 @@
 
 This is the artifact for the paper **Spira: Exploiting Voxel Data Structural Properties for Efficient Sparse Convolution in Point Cloud Networks (MLSys 2026)**. Excluding build time and datasets downloading, it is expected to take about **90 minutes** to finish all evaluations in the artifact. 
 
+## Hardware & Software Requirements 
+
+The artifact should run on hardware platforms with: 
+
+x86-64 CPU: 
+* Memory: ≥ 64GB
+* Storage: ≥ 256GB
+  
+NVIDIA GPU: 
+* Memory: ≥ 16GB
+* CUDA Compute Capability (SM): 7.5+
+
+The artifact should be executed on a Linux-based operating system with an up-to-date NVIDIA driver that supports CUDA 12.4 or newer.
+
 ## Step 0. Accessing Machines in our Lab (for MLSys 2026 AE)
 
 Please send your SSH public key to the authors to be provided with access to a compute node of the authors' institution equipped with 2 × NVIDIA A100 GPUs, which will be the environment that this artifact will be evaluated. After receiving the key, a user account for each reviewer will be created and you will be provided with connection details.
