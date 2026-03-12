@@ -24,15 +24,9 @@ Please coordinate with the other reviewers before running experiments and ensure
 
 ## Step 1. Downloading & Building the Artifact
 
-The source code of our artifact can be found at Zenodo: [Spira_Artifact](https://zenodo.org/records/18879475). Please download the .zip file and copy it to the machine
+The source code of our artifact can be found at Zenodo: [Spira_Artifact](https://zenodo.org/records/18879475). Please download the .zip file and copy it to the machine.
 
-We recommend using Docker Engine for building the artifact to fully control all software dependencies. Please follow the instructions to [Install Docker Engine](https://docs.docker.com/engine/install/) and [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) first. Note that if the current user is not in the docker user group, all following docker-related commands require root privilege (i.e. with sudo) to run. If you want to verify that the NVIDIA Container Toolkit is correctly installed, you can run the following command:
-
-```shell
-docker run --rm --gpus all nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 nvidia-smi
-```
-
-This will download the base docker image and if everything is set up correctly, you’ll see the output with GPU information.
+We recommend using Docker Engine for building the artifact to fully control all software dependencies.
 
 To build the docker image for the artifact, you can use the following snippet:
 ```shell
