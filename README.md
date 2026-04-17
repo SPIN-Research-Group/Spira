@@ -51,8 +51,8 @@ Spira/
 ├── results/                                            # Latency results for each experiment for the artifact evaluation
 ├── scripts/                                            # Python scripts and utils for the artifact evaluation
 │   ├── models/                                         # Point cloud networks used in the artifact
-│   │   ├── minuet/                                     # Point cloud networks using minuet's library
-│   │   ├── spira/                                      # Point cloud networks using spira's library
+│   │   ├── minuet/                                     # Point cloud networks using Minuet's library
+│   │   ├── spira/                                      # Point cloud networks using Spira's library
 │   │   └── torchsparse/                                # Point cloud networks using TorchSparse++'s library  
 │   │   
 │   ├── ablation_experiment.py                          # Captures latency results for scene ablation study
