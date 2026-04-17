@@ -85,7 +85,8 @@ Spira/
 │   │   │       ├── padded_gather_warp_optimized.cuh    # Gather
 │   │   │       ├── padded_scatter_warp_optimized.cuh   # Scatter
 │   │   │       ├── quantifier_wstat.cuh                # Utils for filtering in weight-stationary execution
-│   │   │       └── wstat_stat.cuh                      # Weight-stationary feature computation (single-kernel variant)
+│   │   │       ├── query_sorted.cuh                    # Mapping
+│   │   │       └── weight_stat.cuh                     # Weight-stationary feature computation (single-kernel variant)
 │   │   │
 │   │   ├── torch/                                      # Wrappers and Dispatchers of CUDA backend that expose torch API
 │   │   │   ├── cuda_arg_sort_coordinates.cu            # Downsampling + one-time packing/sort
