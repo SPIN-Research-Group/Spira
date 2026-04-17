@@ -1,8 +1,33 @@
-# Spira Artifact 
+# Spira: Exploiting Voxel Data Structural Properties  for Efficient Sparse Convolution in Point Cloud Networks
 
-This is the artifact for the paper **Spira: Exploiting Voxel Data Structural Properties for Efficient Sparse Convolution in Point Cloud Networks (MLSys 2026)**. Excluding build time and datasets downloading, it is expected to take about **90 minutes** to finish all evaluations in the artifact. 
+[<i>Spira</i>](https://arxiv.org/pdf/2511.20834) is the first voxel-property-aware Sparse Convolution engine to efficiently execute Point Cloud Networks on modern GPUs. 
 
-## Hardware & Software Requirements 
+Sparse Convolution (SpC) powers 3D point cloud networks widely used in autonomous driving and AR/VR. SpC builds a kernel map that stores mappings between input voxel coordinates, output coordinates, and weight offsets, then uses this map to compute feature vectors for output coordinates. Our work identifies three key properties of voxel coordinates: they are integer-valued, bounded within a limited spatial range, and geometrically continuous, i.e., neighboring voxels on the same object surface are highly likely to exist at small spatial offsets from each other. Prior SpC engines do not fully exploit these properties and suffer from high pre-processing and post-processing overheads during kernel map construction. 
+
+Spira the first voxel-property-aware SpC engine for GPUs. Spira proposes: (i) a high-performance one-shot search algorithm that builds the kernel map with no preprocessing and high memory locality, (ii) an effective packed-native processing
+scheme that accesses packed voxel coordinates at low cost, (iii) a flexible dual-dataflow execution mechanism that efficiently computes output feature vectors by adapting to layer characteristics, and (iv) a network-wide parallelization strategy that builds kernel maps for all SpC layers concurrently at network start. Spira provides significant performance benefits across various point cloud networks, real datasets, and GPU architectures.
+
+## Cite Spira
+
+Please use the following citations to cite Spira, if you find this repository useful:
+
+Bibtex entries for citation:
+```
+@article{Adamopoulos2026Spira,
+  author={Adamopoulos, Dionysios and Poulopoulou, Anastasia and Goumas, Georgios and Giannoula, Christina},
+	title={Spira: Exploiting Voxel Data Structural Properties  for Efficient Sparse Convolution in Point Cloud Networks}, 
+  journal={Proceedings of Machine Learning and Systems},
+  volume={8},
+  year={2026}
+}
+```
+
+## Repository Overview
+Todo
+
+## Quick Start
+
+### Hardware & Software Requirements 
 
 The artifact should run on hardware platforms with: 
 
@@ -16,7 +41,7 @@ NVIDIA GPU:
 
 The artifact should be executed on a Linux-based operating system with an up-to-date NVIDIA driver that supports CUDA 12.4 or newer.
 
-## Step 1. Building the Artifact 
+### Step 1. Building the Artifact 
 We recommend using Docker Engine for building the artifact to fully control all software dependencies. Please follow the instructions to [Install Docker Engine](https://docs.docker.com/engine/install/) and [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) first. Note that if the current user is not in the docker user group, all following docker-related commands require root privilege (i.e. with sudo) to run. If you want to verify that the NVIDIA Container Toolkit is correctly installed, you can run the following command:
 
 ```shell
@@ -42,7 +67,7 @@ docker run -it --rm --gpus "device=$GPU_ID" -v "$(pwd):/workspace/artifacts" spi
 
 All subsequent commands must be executed inside the container.
 
-## Step 2. Prepare the Datasets 
+### Step 2. Prepare the Datasets 
 
 For our evaluation we use scenes from 3 real-world datasets that are licensed. For each of these datasets, we provide detailed instructions on how to obtain access:
 
@@ -74,11 +99,11 @@ For our evaluation we also use synthetic randomly distributed voxel scenes. Exec
 python3 random_voxel_generator.py
 cd .. 
  ```
-## Step 3. Run the Experiments
+### Step 3. Run the Experiments
 
 We have 5 scripts/experiments that evaluate Spira:
 
-### Run All Experiments
+#### Run All Experiments
 
 The following command will execute all experiments and generate all figures in the /figures subfolder:
 
@@ -88,7 +113,7 @@ bash automate/run_all.sh
 
 For more detailed explanation of the experiments see below. Each script can be configured by modifying the experiment parameters defined within the corresponding *.sh file (e.g., scenes, networks, baselines).
 
-### (A) End-to-End Inference Performance 
+#### (A) End-to-End Inference Performance 
 
 The following command will evaluate end-to-end inference performance of all Sparse Convolution Engines using different datasets and networks (Figures 8-9 of paper):
 
@@ -96,7 +121,7 @@ The following command will evaluate end-to-end inference performance of all Spar
 bash automate/end_to_end.sh
  ```
 
-### (B) Layerwise Performance
+#### (B) Layerwise Performance
 
 The following command will evaluate layerwise performance of all Sparse Convolution Engines averaged across all datasets for different Sparse Convolution layer configurations (Figure 10 of paper):
 
@@ -104,7 +129,7 @@ The following command will evaluate layerwise performance of all Sparse Convolut
 bash automate/layerwise.sh
  ```
 
-### (C) Mapping Performance
+#### (C) Mapping Performance
 
 The following command will evaluate the mapping performance in voxel indexing step of all Sparse Convolution Engines across varying input coordinate counts and layer kernel sizes (Figure 12 of paper):
 
@@ -112,7 +137,7 @@ The following command will evaluate the mapping performance in voxel indexing st
 bash automate/mapping.sh
  ```
 
-### (D) Scene Density Ablation Study
+#### (D) Scene Density Ablation Study
 
 The following command will evaluate end-to-end inference performance of all Sparse Convolution Engines averaged across all networks for synthetic scenes of varying sparsity (Figure 16 of paper):
 
@@ -120,10 +145,16 @@ The following command will evaluate end-to-end inference performance of all Spar
 bash automate/ablation.sh
  ```
 
-### (E) Correctness
+#### (E) Correctness
 
 The following command will compare the output of Sparse Convolution Engines (coordinates and features) across different layer configurations (For Spira we verify all different threshold selections):
 
 ```shell
 bash automate/correctness.sh
  ```
+
+
+## Contact
+
+For any suggestions for improvement, any issues related to Spira source code or for reporting bugs, please contact Dionysios Adamopoulos at dionadam2013@gmail.com .
+
