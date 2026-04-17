@@ -12,7 +12,7 @@ x86-64 CPU:
   
 NVIDIA GPU: 
 * Memory: ≥ 16GB
-* CUDA Compute Capability (SM): 7.5-9.0
+* CUDA Compute Capability (SM): 7.5+
 
 The artifact should be executed on a Linux-based operating system with an up-to-date NVIDIA driver that supports CUDA 12.4 or newer.
 
