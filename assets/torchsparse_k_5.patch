@@ -1,0 +1,27 @@
+Subject: [PATCH] Enabling Sorting optimization for Tuner at larger kernel
+ sizes
+
+---
+ torchsparse/utils/tune.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/torchsparse/utils/tune.py b/torchsparse/utils/tune.py
+index b8e6c0c..33441d4 100644
+--- a/torchsparse/utils/tune.py
++++ b/torchsparse/utils/tune.py
+@@ -261,7 +261,11 @@ def profile_model(
+             # Stage 2: test sort fwd
+             dummy_config.ifsort = True
+             if not tune_with_bwd:
+-                for split_mask_num in range(1, 5):
++                for split_mask_num in range(1, 6):
++                    ksize = group_idx[1]
++                    ksize = make_ntuple(ksize, ndim=3)                            #Sort optimization for kernels > 32 must have enough splits so that the 32bit mask is not overflown
++                    if (ksize[0]*ksize[1]*ksize[2] > 32 and split_mask_num < 5):  #Here we provide a quick fix to safely enable TorchSparse++'s tuner to select a valid sorting optimization for 5^3 Kernels.
++                         continue 
+                     dummy_config.split_mask_num = split_mask_num
+                     set_group_config(model, names, dummy_config)
+                     inputs = clear_tensor_cache(inputs)
+-- 
+2.43.0.windows.1
+

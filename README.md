@@ -12,21 +12,18 @@ x86-64 CPU:
   
 NVIDIA GPU: 
 * Memory: ≥ 16GB
-* CUDA Compute Capability (SM): 7.5+
+* CUDA Compute Capability (SM): 7.5-9.0
 
 The artifact should be executed on a Linux-based operating system with an up-to-date NVIDIA driver that supports CUDA 12.4 or newer.
 
-## Step 0. Accessing Machines in our Lab (for MLSys 2026 AE)
+## Step 1. Building the Artifact 
+We recommend using Docker Engine for building the artifact to fully control all software dependencies. Please follow the instructions to [Install Docker Engine](https://docs.docker.com/engine/install/) and [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-container-toolkit) first. Note that if the current user is not in the docker user group, all following docker-related commands require root privilege (i.e. with sudo) to run. If you want to verify that the NVIDIA Container Toolkit is correctly installed, you can run the following command:
 
-Please send your SSH public key to the authors to be provided with access to a compute node of the authors' institution equipped with 2 × NVIDIA A100 GPUs, which will be the environment that this artifact will be evaluated. After receiving the key, a user account for each reviewer will be created and you will be provided with connection details.
+```shell
+docker run --rm --gpus all nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 nvidia-smi
+```
 
-Please coordinate with the other reviewers before running experiments and ensure that only one reviewer uses the machine at a time. Τhis coordination among reviewers is important to eliminate interference and correctly reproduce this artifact.
-
-## Step 1. Downloading & Building the Artifact
-
-The source code of our artifact can be found at Zenodo: [Spira_Artifact](https://zenodo.org/records/18879475). Please download the .zip file and copy it to the machine.
-
-We recommend using Docker Engine for building the artifact to fully control all software dependencies.
+This will download the base docker image and if everything is set up correctly, you’ll see the output with GPU information.
 
 To build the docker image for the artifact, you can use the following snippet:
 ```shell

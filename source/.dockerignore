@@ -1,0 +1,8 @@
+cmake-build-*
+/build
+__pycache__
+*.pyc
+*.so
+*.egg-info
+.dockerignore
+.gitignore

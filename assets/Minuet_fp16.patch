@@ -1,0 +1,47 @@
+Subject: [PATCH] Enabling FP16 Inference for Minuet + fixing memory alignment
+ issue
+
+---
+ csrc/minuet/enabled_arguments.h | 3 ++-
+ minuet/nn/convolutions.py       | 4 ++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/csrc/minuet/enabled_arguments.h b/csrc/minuet/enabled_arguments.h
+index 42db544..22c9398 100644
+--- a/csrc/minuet/enabled_arguments.h
++++ b/csrc/minuet/enabled_arguments.h
+@@ -9,7 +9,8 @@
+   MACRO(__VA_ARGS__, std::int32_t)
+ 
+ #define MINUET_FOR_ALL_F_TYPES(MACRO, ...) \
+-  MACRO(__VA_ARGS__, float)
++  MACRO(__VA_ARGS__, float);               \
++  MACRO(__VA_ARGS__, __half)                   //enabling FP16 inference
+ 
+ #define MINUET_FOR_ALL_DIMS(MACRO, ...) \
+   MACRO(__VA_ARGS__, 1);                \
+diff --git a/minuet/nn/convolutions.py b/minuet/nn/convolutions.py
+index 37bace7..ced4487 100644
+--- a/minuet/nn/convolutions.py
++++ b/minuet/nn/convolutions.py
+@@ -393,7 +393,7 @@ class SparseConv(Module):
+ 
+       optimal_time = None
+       for tile_size in range(1, self.in_channels + 1):
+-        if self.in_channels % tile_size != 0:
++        if self.in_channels % tile_size != 0 or (tile_size % 4 != 0):       #required for FP16 memory alignment
+           continue
+ 
+         timings = []
+@@ -418,7 +418,7 @@ class SparseConv(Module):
+ 
+       optimal_time = None
+       for tile_size in range(1, self.out_channels + 1):
+-        if self.out_channels % tile_size != 0:
++        if self.out_channels % tile_size != 0 or (tile_size % 4 != 0):       #required for FP16 memory alignment
+           continue
+ 
+         timings = []
+-- 
+2.39.5
+
