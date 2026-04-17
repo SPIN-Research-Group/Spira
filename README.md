@@ -3,7 +3,8 @@
 </p>
 
 <h2 align="center">
-  Spira: Exploiting Voxel Data Structural Properties for Efficient Sparse Convolution in Point Cloud Networks 
+  Spira: Exploiting Voxel Data Structural Properties <br> 
+  for Efficient Sparse Convolution in Point Cloud Networks 
 </h2>
 
 [<i>Spira</i>](https://arxiv.org/pdf/2511.20834) is the first voxel-property-aware Sparse Convolution engine to efficiently execute Point Cloud Networks on modern GPUs. 
