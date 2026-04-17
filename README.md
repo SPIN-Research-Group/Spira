@@ -24,6 +24,7 @@ Bibtex entries for citation:
 
 ## Repository Overview
 
+```
 Spira/
 ├── assets/                                             # Fixes and extensions for sparse convolution engines
 │   ├── Minuet_fp16.patch                               # Extensions to allow Minuet operate at half precision
@@ -114,6 +115,7 @@ Spira/
 │       └── tensors.py                                  # Data structure for coordinates + features (voxel data)
 │
 └── Dockerfile                                          # Dockerfile to ease artifact setup via handling all software dependencies
+```
 
 ## Quick Start
 
