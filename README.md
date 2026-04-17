@@ -1,5 +1,10 @@
-# Spira: Exploiting Voxel Data Structural Properties  for Efficient Sparse Convolution in Point Cloud Networks
+<p align="center">
+  <img src="logo/logo.png" alt="Spira logo" width="300">
+</p>
 
+<h1 align="center">
+  Spira: Exploiting Voxel Data Structural Properties for Efficient Sparse Convolution in Point Cloud Networks
+</h1>
 [<i>Spira</i>](https://arxiv.org/pdf/2511.20834) is the first voxel-property-aware Sparse Convolution engine to efficiently execute Point Cloud Networks on modern GPUs. 
 
 Sparse Convolution (SpC) powers 3D point cloud networks widely used in autonomous driving and AR/VR. SpC builds a kernel map that stores mappings between input voxel coordinates, output coordinates, and weight offsets, then uses this map to compute feature vectors for output coordinates. Our work identifies three key properties of voxel coordinates: they are integer-valued, bounded within a limited spatial range, and geometrically continuous, i.e., neighboring voxels on the same object surface are highly likely to exist at small spatial offsets from each other. Prior SpC engines do not fully exploit these properties and suffer from high pre-processing and post-processing overheads during kernel map construction. 
