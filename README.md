@@ -15,7 +15,7 @@ Bibtex entries for citation:
 ```
 @article{Adamopoulos2026Spira,
   author={Adamopoulos, Dionysios and Poulopoulou, Anastasia and Goumas, Georgios and Giannoula, Christina},
-	title={Spira: Exploiting Voxel Data Structural Properties  for Efficient Sparse Convolution in Point Cloud Networks}, 
+  title={Spira: Exploiting Voxel Data Structural Properties  for Efficient Sparse Convolution in Point Cloud Networks}, 
   journal={Proceedings of Machine Learning and Systems},
   volume={8},
   year={2026}
@@ -156,5 +156,5 @@ bash automate/correctness.sh
 
 ## Contact
 
-For any suggestions for improvement, any issues related to Spira source code or for reporting bugs, please contact Dionysios Adamopoulos at dionadam2013@gmail.com .
+For any suggestions for improvement, any issues related to Spira source code or for reporting bugs, please contact Dionysios Adamopoulos at dionadam2013@gmail.com.
 
