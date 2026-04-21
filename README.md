@@ -173,7 +173,7 @@ For our evaluation we use scenes from 3 real-world datasets that are licensed. F
 
 * Waymo: Accept the terms in the official Waymo [website](https://waymo.com/open/terms/) to grant your Google account access to the dataset.
 
-* ScanNet: Make sure you have a Hugging Face account and accept the conditions in this [repository ](https://huggingface.co/datasets/Pointcept/scannet-compressed). From Hugging Face go to Access Tokens -> Create New Token to generate a Read Token Type that will allow you to access your Hugging Face account from terminal. Then execute:
+* ScanNet: Make sure you have a Hugging Face account and accept the conditions in this [repository](https://huggingface.co/datasets/Pointcept/scannet-compressed). From Hugging Face go to Access Tokens -> Create New Token to generate a Read Token Type that will allow you to access your Hugging Face account from terminal. Then execute:
 
 ```shell
  export HF_TOKEN=hf_....
